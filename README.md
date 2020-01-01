@@ -41,7 +41,7 @@ Edit `main.tf`
 # Customize your AWS Region
 variable "aws_region" {
   description = "AWS Region for the VPC"
-  default     = "us-east-1"
+  default     = "ap-southeast-1"
 }
 
 provider "aws" {
@@ -140,7 +140,7 @@ module "service_whois" {
     cpu_evaluation_periods  = 1
 
     # Pipeline Configuration
-    build_image         = "aws/codebuild/docker:17.09.0"
+    build_image         = "aws/codebuild/standard:2.0"
 
     git_repository_owner    = "msfidelis"
     git_repository_name     = "microservice-nadave-whois"

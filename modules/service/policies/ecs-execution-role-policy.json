@@ -4,6 +4,8 @@
       {
         "Effect": "Allow",
         "Action": [
+          "ecr:*",
+          "cloudtrail:LookupEvents",
           "ecr:GetAuthorizationToken",
           "ecr:BatchCheckLayerAvailability",
           "ecr:GetDownloadUrlForLayer",

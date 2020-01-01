@@ -32,8 +32,8 @@
       ]
     },
     {
-        "name": "envoy",
-        "image": "111345817488.dkr.ecr.${region}.amazonaws.com/aws-appmesh-envoy:v1.11.1.1-prod",
+        "name": "envoy",        
+        "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.0-prod",        
         "user": "1337",
         "essential": true,
             "cpu": ${envoy_cpu},
@@ -79,7 +79,7 @@
         "logConfiguration": {
           "logDriver": "awslogs",
           "options": {
-            "awslogs-group": "${log_group}-envoy",
+            "awslogs-group": "${log_group}",
             "awslogs-region": "${region}",
             "awslogs-stream-prefix": "${container_name}-envoy"
           }
@@ -87,11 +87,11 @@
       },
       {
         "name": "xray-daemon",
-        "image": "amazon/aws-xray-daemon",
-        "user": "1337",
+        "image": "amazon/aws-xray-daemon:1",        
         "essential": true,
-        "cpu": ${xray_cpu},
-        "memoryReservation": ${xray_mem},
+        "user": "1337",
+        "cpu": 32,
+        "memory": 256,
         "portMappings": [
           {
             "hostPort": 2000,
@@ -106,6 +106,8 @@
             "awslogs-region": "${region}",
             "awslogs-stream-prefix": "${container_name}-xray"
           }
-        }
-      }
+        },
+        "essential": true,
+        "volumesFrom": []
+      }      
   ]

@@ -52,20 +52,20 @@ variable "envoy_cpu" {
 }
 
 variable "envoy_mem" {
-  default = 256
+  default = 512
 }
 
 variable "envoy_log_level" {
   type    = string
-  default = "debug"
+  default = "trace"
 }
 
 variable "xray_cpu" {
-  default = 256
+  default = 0
 }
 
 variable "xray_mem" {
-  default = 256
+  default = 0
 }
 
 variable "container_port" {}

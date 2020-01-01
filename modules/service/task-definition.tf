@@ -1,6 +1,6 @@
 data "template_file" "task" {
 
-  template = file(format("%s/task-definitions/task.json", path.module))
+  template = file(format("%s/task-definitions/envoy.json", path.module))
 
   vars = {
     image               = aws_ecr_repository.registry.repository_url
@@ -26,10 +26,10 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions    = data.template_file.task.rendered
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                       = var.desired_task_cpu
-  memory                    = var.desired_task_mem
-  // cpu                      = var.desired_task_cpu + var.envoy_cpu + var.xray_cpu
-  // memory                   = var.desired_task_mem + var.envoy_mem + var.xray_mem
+  // cpu                       = var.desired_task_cpu
+  // memory                    = var.desired_task_mem
+  cpu                      = var.desired_task_cpu + var.envoy_cpu + var.xray_cpu
+  memory                   = var.desired_task_mem + var.envoy_mem + var.xray_mem
 
   execution_role_arn = aws_iam_role.ecs_execution_role.arn
   task_role_arn      = aws_iam_role.ecs_execution_role.arn

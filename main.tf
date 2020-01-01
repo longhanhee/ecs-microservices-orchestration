@@ -13,7 +13,7 @@ variable "cluster_name" {
 # Customize your AWS Region
 variable "aws_region" {
   description = "AWS Region for the VPC"
-  default     = "us-east-1"
+  default     = "ap-southeast-1"
 }
 
 provider "aws" {
