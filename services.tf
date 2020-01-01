@@ -266,10 +266,10 @@ module "service_helloworld" {
     service_healthcheck = {
         healthy_threshold   = 3
         unhealthy_threshold = 10
-        timeout             = 60
-        interval            = 100
+        timeout             = 100
+        interval            = 120
         matcher             = "200"
-        path                = "/healthcheck"
+        path                = "/actuator/health"
         port                = 80
     }
 
@@ -328,10 +328,10 @@ module "service_currency" {
     service_healthcheck = {
         healthy_threshold   = 3
         unhealthy_threshold = 10
-        timeout             = 60
-        interval            = 100
+        timeout             = 100
+        interval            = 120
         matcher             = "200"
-        path                = "/healthcheck"
+        path                = "/api/currency-exchange-microservice/manage/health"
         port                = 8000
     }
 
