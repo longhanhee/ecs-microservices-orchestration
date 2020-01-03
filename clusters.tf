@@ -19,7 +19,8 @@ module "cluster_example" {
 
     availability_zones  = [
         module.vpc.public_subnet_1a,
-        module.vpc.public_subnet_1b
+        module.vpc.public_subnet_1b,
+        module.vpc.public_subnet_1c
     ]
 
 }

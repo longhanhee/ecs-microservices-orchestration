@@ -306,7 +306,8 @@ module "service_helloworld" {
     # AZ's
     availability_zones  = [
         module.vpc.public_subnet_1a,
-        module.vpc.public_subnet_1b
+        module.vpc.public_subnet_1b,
+        module.vpc.public_subnet_1c
     ]
 }
 
@@ -368,6 +369,7 @@ module "service_currency" {
     # AZ's
     availability_zones  = [
         module.vpc.public_subnet_1a,
-        module.vpc.public_subnet_1b
+        module.vpc.public_subnet_1b,
+        module.vpc.public_subnet_1c
     ]
 }
