@@ -1,6 +1,22 @@
+data "aws_ssm_parameter" "RDS_PASSWORD" {
+  name = "/spada/production/RDS_PASSWORD"  
+}
+
+data "aws_ssm_parameter" "RDS_USERNAME" {
+  name = "/spada/production/RDS_USERNAME"  
+}
+
+data "aws_ssm_parameter" "RDS_DB_NAME" {
+  name = "/spada/production/RDS_DB_NAME"  
+}
+
+data "aws_ssm_parameter" "RDS_PORT" {
+  name = "/spada/production/RDS_PORT"  
+}
+
 data "template_file" "task" {
 
-  template = file(format("%s/task-definitions/envoy.json", path.module))
+  template = var.mode_database == "rds" ? file( format("%s/task-definitions/task_rds.json", path.module)) : file( format("%s/task-definitions/envoy.json", path.module))
 
   vars = {
     image               = aws_ecr_repository.registry.repository_url
@@ -16,6 +32,11 @@ data "template_file" "task" {
     envoy_mem           = var.envoy_mem
     xray_cpu            = var.xray_cpu
     xray_mem            = var.xray_mem
+    rds_hostname        = var.rds_hostname
+    rds_db_name         = data.aws_ssm_parameter.RDS_DB_NAME.value
+    rds_username        = data.aws_ssm_parameter.RDS_USERNAME.value
+    rds_password        = data.aws_ssm_parameter.RDS_PASSWORD.value
+    rds_port            = data.aws_ssm_parameter.RDS_PORT.value
     region              = var.region
   }
 }

@@ -19,6 +19,14 @@ data "aws_security_group" "default" {
   name   = "default"
 }
 
+resource "aws_security_group_rule" "allow_all" {
+    type = "ingress"
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    security_group_id = data.aws_security_group.default.id
+}
 
 # module "rds_instance" {
 #   source              = "git::https://github.com/cloudposse/terraform-aws-rds.git?ref=master"

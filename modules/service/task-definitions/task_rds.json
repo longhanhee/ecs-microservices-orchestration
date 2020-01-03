@@ -1,0 +1,71 @@
+[
+    {
+        "name": "${container_name}",
+        "image": "${image}",
+        "portMappings": [
+            {
+                "containerPort": ${container_port},
+                "hostPort": ${container_port}
+            }
+        ],
+        "cpu": ${desired_task_cpu},
+        "memory": ${desired_task_memory},
+        "networkMode": "awsvpc",
+        "essential": true,
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${log_group}",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "${container_name}"
+            }
+        },
+        "environment": [
+            {
+                "name": "RDS_HOSTNAME",
+                "value": "${rds_hostname}"
+            },
+            {
+                "name": "RDS_PORT",
+                "value": "${rds_port}"
+            },
+            {
+                "name": "RDS_DB_NAME",
+                "value": "${rds_db_name}"
+            },
+            {
+                "name": "RDS_USERNAME",
+                "value": "${rds_username}"
+            },
+            {
+                "name": "RDS_PASSWORD",
+                "value": "${rds_password}"
+            }
+        ]
+    },
+    {
+        "name": "xray-daemon",
+        "image": "amazon/aws-xray-daemon:1",
+        "essential": true,
+        "user": "1337",
+        "cpu": 32,
+        "memory": 256,
+        "portMappings": [
+            {
+                "hostPort": 2000,
+                "containerPort": 2000,
+                "protocol": "udp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${log_group}",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "${container_name}-xray"
+            }
+        },
+        "essential": true,
+        "volumesFrom": []
+    }
+]

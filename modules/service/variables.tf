@@ -2,6 +2,14 @@ variable "vpc_id" {}
 
 variable "region" {}
 
+variable "mode_database" {
+  default = ""
+}
+
+variable "rds_hostname" {
+  default = ""
+}
+
 variable "cluster_listener" {}
 
 variable "cluster_name" {}
