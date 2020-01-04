@@ -17,7 +17,7 @@
 #     service_healthcheck = {
 #         healthy_threshold   = 3
 #         unhealthy_threshold = 10
-#         timeout             = 100
+#         timeout             = 60
 #         interval            = 120
 #         matcher             = "200"
 #         path                = "/actuator/health"
@@ -80,7 +80,7 @@
 #     service_healthcheck = {
 #         healthy_threshold   = 3
 #         unhealthy_threshold = 10
-#         timeout             = 100
+#         timeout             = 60
 #         interval            = 120
 #         matcher             = "200"
 #         path                = "/api/currency-exchange-microservice/manage/health"
@@ -146,7 +146,7 @@ module "service_currency_rds" {
     service_healthcheck = {
         healthy_threshold   = 3
         unhealthy_threshold = 10
-        timeout             = 100
+        timeout             = 60
         interval            = 120
         matcher             = "200"
         path                = "/api/currency-exchange-microservice/manage/health"
