@@ -1,0 +1,50 @@
+[
+  {
+    "name": "elasticsearch-task",
+    "image": "525589461975.dkr.ecr.ap-southeast-1.amazonaws.com/hoge_test_es_app_ecr:latest",
+    "cpu": ${desired_task_cpu},
+    "memory": ${desired_task_memory},
+    "memoryReservation": ${desired_task_memory},
+    "portMappings": [
+      {
+        "containerPort": 9200,
+        "hostPort": 9200,
+        "protocol": "tcp"
+      },
+      {
+        "containerPort": 9300,
+        "hostPort": 9300,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "environment": [
+      {
+        "name": "ES_JAVA_OPTS",
+        "value": "-Xms8g -Xmx8g"
+      },
+      {
+        "name": "REGION",
+        "value": "${region}"
+      }
+    ],
+    "volumesFrom": [],
+    "disableNetworking": false,
+    "readonlyRootFilesystem": false,
+    "ulimits": [
+      {
+        "name": "nofile",
+        "softLimit": 4096,
+        "hardLimit": 4096
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "${container_name}-elasticsearch"
+      }
+    }
+  }
+]

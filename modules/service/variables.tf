@@ -2,8 +2,8 @@ variable "vpc_id" {}
 
 variable "region" {}
 
-variable "mode_database" {
-  default = ""
+variable "mode_task" {
+  default = "normal"
 }
 
 variable "rds_hostname" {

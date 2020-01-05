@@ -16,7 +16,7 @@ data "aws_ssm_parameter" "RDS_PORT" {
 
 data "template_file" "task" {
 
-  template = var.mode_database == "rds" ? file( format("%s/task-definitions/task_rds.json", path.module)) : file( format("%s/task-definitions/envoy.json", path.module))
+  template = var.mode_task == "rds" ? file( format("%s/task-definitions/task_rds.json", path.module)) : var.mode_task == "elasticsearch" ? file( format("%s/task-definitions/task_elasticsearch.json", path.module)) : file( format("%s/task-definitions/envoy.json", path.module))
 
   vars = {
     image               = aws_ecr_repository.registry.repository_url

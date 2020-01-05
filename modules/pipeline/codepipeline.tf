@@ -1,4 +1,5 @@
 resource "aws_codepipeline" "pipeline" {
+  count = var.git_repository_name == "" ? 0 : 1
   name     = format("%s-%s-pipeline", var.cluster_name, var.app_service_name)
   role_arn = aws_iam_role.codepipeline_role.arn
 
