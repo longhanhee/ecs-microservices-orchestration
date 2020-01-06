@@ -69,7 +69,7 @@ module "rds_instance" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 2.0"
 
-  identifier = "nalldb"
+  identifier = "malldb"
 
   engine            = "mysql"
   engine_version    = "5.7.26"

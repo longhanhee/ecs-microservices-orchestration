@@ -232,8 +232,8 @@ module "service_mall" {
     max_tasks       = 10
 
     # Tasks CPU / Memory limits
-    desired_task_cpu        = 1024
-    desired_task_mem        = 2048
+    desired_task_cpu        = 768
+    desired_task_mem        = 1792
 
     # CPU metrics for Auto Scale
     cpu_to_scale_up         = 80

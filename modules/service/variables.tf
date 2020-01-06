@@ -56,11 +56,11 @@ variable "service_healthcheck" {
 }
 
 variable "envoy_cpu" {
-  default = 256
+  default = 0
 }
 
 variable "envoy_mem" {
-  default = 512
+  default = 0
 }
 
 variable "envoy_log_level" {
@@ -69,11 +69,11 @@ variable "envoy_log_level" {
 }
 
 variable "xray_cpu" {
-  default = 0
+  default = 256
 }
 
 variable "xray_mem" {
-  default = 0
+  default = 256
 }
 
 variable "container_port" {}

@@ -7,7 +7,7 @@
 # Customize the Cluster Name
 variable "cluster_name" {
   description = "ECS Cluster Name"
-  default     = "demo"
+  default     = "mall-cluster"
 }
 
 # Customize your AWS Region
