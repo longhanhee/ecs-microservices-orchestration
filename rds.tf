@@ -69,7 +69,7 @@ module "rds_instance" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 2.0"
 
-  identifier = "demodb"
+  identifier = "nalldb"
 
   engine            = "mysql"
   engine_version    = "5.7.26"
@@ -113,7 +113,7 @@ module "rds_instance" {
   major_engine_version = "5.7"
 
   # Snapshot name upon DB deletion
-  final_snapshot_identifier = "demodb"
+  final_snapshot_identifier = "malldb"
 
   # Database Deletion Protection
   deletion_protection = false
